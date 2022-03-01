@@ -131,6 +131,22 @@ def main():
     stock_data = calculate_stock_data(sales_columns)
     update_worksheet(stock_data, "stock")
 
+    return stock_data
+
 
 print("Welcome to Love Sandwiches Data Automation")
-main()
+stock_data = main()
+
+
+def get_stock_values(data):
+    """
+    Returns the number of sandwiches for the next market as a dictionary
+    """
+    print("Make the following numbers of sandwiches for the next market:\n")
+    headings = SHEET.worksheet("sales").row_values(1)
+
+    return dict(zip(headings, data))
+
+
+stock_values = get_stock_values(stock_data)
+print(stock_values)
